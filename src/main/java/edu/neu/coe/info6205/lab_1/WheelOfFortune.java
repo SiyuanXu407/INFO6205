@@ -58,7 +58,17 @@ public class WheelOfFortune<T> {
      */
     public T get() {
         // TO BE IMPLEMENTED
+        
+        int val = random.nextInt(total);
+        for(Event<T> event: events) {
+        	if(val <event.frequency) return event.event;
+        	val-=event.frequency;
+        }
         throw new UnsupportedOperationException();
+        
+        
+        
+        
     }
 
     // Private stuff...
