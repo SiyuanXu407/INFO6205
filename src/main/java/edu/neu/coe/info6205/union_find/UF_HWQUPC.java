@@ -116,7 +116,7 @@ public class UF_HWQUPC implements UF {
      */
     public void union(int p, int q) {
         // CONSIDER can we avoid doing find again?
-        mergeComponents(find(p), find(q));
+        mergeComponents(p, q);
         count--;
     }
 
@@ -178,15 +178,19 @@ public class UF_HWQUPC implements UF {
     	int p=i;
         int q=j;
         int rootP = find(p);
-             int rootQ = find(q);
+        int rootQ = find(q);
+
              if (rootP == rootQ)  throw new RuntimeException("not implemented");
              // make smaller root point to larger one
              if (height[rootP] < height[rootQ]) {
                  parent[rootP] = rootQ;
-                 height[rootQ] += height[rootP];
-             } else {
+                // height[rootQ] += height[rootP];
+             } else if(height[rootP] >height[rootQ]){
                  parent[rootQ] = rootP;
-                 height[rootP] += height[rootQ];
+                 //height[rootP] += height[rootQ];
+             }else {
+            	 parent[rootQ] = rootP;
+            	 height[rootP] = height[rootP]+1;
              }
 
     }
